@@ -1,4 +1,0 @@
-C:\Users\akihi\OneDrive\Documents\Visual Studio\KyleQlator\KyleQlator\x64\Debug\KyleQlator.vcxproj.AssemblyReference.cache
-C:\Users\akihi\OneDrive\Documents\Visual Studio\KyleQlator\KyleQlator\x64\Debug\KyleQlator.vcxproj.SuggestedBindingRedirects.cache
-C:\Users\akihi\OneDrive\Documents\Visual Studio\KyleQlator\KyleQlator\x64\Debug\KyleQlator.MyForm.resources
-C:\Users\akihi\OneDrive\Documents\Visual Studio\KyleQlator\KyleQlator\x64\Debug\KyleQlator.vcxproj.GenerateResource.cache
