@@ -1,0 +1,5 @@
+C:\Users\akihi\OneDrive\Documents\Visual Studio\myFinals\x64\Debug\myFinals.vcxproj.AssemblyReference.cache
+C:\Users\akihi\OneDrive\Documents\Visual Studio\myFinals\x64\Debug\myFinals.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\akihi\OneDrive\Documents\Visual Studio\myFinals\x64\Debug\myFinals.Key1.resources
+C:\Users\akihi\OneDrive\Documents\Visual Studio\myFinals\x64\Debug\myFinals.vcxproj.GenerateResource.cache
+C:\Users\akihi\OneDrive\Documents\Visual Studio\myFinals\x64\Debug\myFinals.exe
