@@ -479,6 +479,7 @@ namespace myFinals {
 		}
 #pragma endregion
 	private: System::Void Submit_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Our String Variables
 		String^ spentInput = tSpent->Text;
 		String^ budgetInput = tBudget->Text;
 		String^ sideInput = sHustle->Text;
@@ -496,19 +497,24 @@ namespace myFinals {
 			double totalSpent = 0;
 			double totalBudget = 0;
 
-			if (tSpentV > tBudgetV) {
+			if (tSpentV > tBudgetV) { //Checks if TextBox(tSpentV) is greater than TextBox(tBudgetV)
 				MessageBox::Show("Expense exceeds budget!", "Error");
 			}
 			else {
-				++days;
+				++days; //Will start incrementing by 1
 				dataGridView1->Rows->Add(days, tBudgetV, tSpentV, tBudgetV - tSpentV);
 				dDays->Text = days.ToString();
+				/*
+				Could also use this to start from 0
+				dDays->Text = (++days).ToString();
+				*/
 			}
 			if (!String::IsNullOrEmpty(sideInput)) {
-				sHustleV = System::Convert::ToDouble(sideInput);
-				dHustle->Text = (dHustleValue + sHustleV).ToString();
+				sHustleV = System::Convert::ToDouble(sideInput); //Converts String to Double, could be placed outside.
+				dHustle->Text = (dHustleValue + sHustleV).ToString(); //Adds the sHustleV(The one in the input) and the current one dHustleValue(Which is also dHustle->Text).
 			}
 			for (int i=0;i<dataGridView1->Rows->Count;i++) {
+				//So here... We use for loop to add row all of the rows.
 				DataGridViewRow^ row = dataGridView1->Rows[i];
 				double savingsValue = System::Convert::ToDouble(row->Cells["Savings"]->Value);
 				double spentValue = System::Convert::ToDouble(row->Cells["Spent"]->Value);
@@ -542,6 +548,7 @@ private: System::Void Reset_Click(System::Object^ sender, System::EventArgs^ e) 
 	tSavings->Text = "0";
 	ttSpent->Text = "0";
 	ttBudget->Text = "0";
+	dHustle->Text = "0";
 	tBudget->Text = "";
 	tSpent->Text = "";
 	sHustle->Text = "";
