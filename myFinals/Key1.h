@@ -509,22 +509,22 @@ namespace myFinals {
 				dDays->Text = (++days).ToString();
 				*/
 			}
-			if (!String::IsNullOrEmpty(sideInput)) {
+			if (!String::IsNullOrEmpty(sideInput)) { //This part is just for the Side Hustle
 				sHustleV = System::Convert::ToDouble(sideInput); //Converts String to Double, could be placed outside.
 				dHustle->Text = (dHustleValue + sHustleV).ToString(); //Adds the sHustleV(The one in the input) and the current one dHustleValue(Which is also dHustle->Text).
 			}
 			for (int i=0;i<dataGridView1->Rows->Count;i++) {
-				//So here... We use for loop to add row all of the rows.
-				DataGridViewRow^ row = dataGridView1->Rows[i];
-				double savingsValue = System::Convert::ToDouble(row->Cells["Savings"]->Value);
+				//So here... We use for loop to add row all of the column in the rows.
+				DataGridViewRow^ row = dataGridView1->Rows[i]; //Just like array, it starts from 0.
+				double savingsValue = System::Convert::ToDouble(row->Cells["Savings"]->Value); //Assuming that I have a value of 20 at our first row(0), then the next one is 10 which is row(1). So it would add/sum 20 and 10. But in this line of code, we'll just get the value of "i".
 				double spentValue = System::Convert::ToDouble(row->Cells["Spent"]->Value);
 				double budgetValue = System::Convert::ToDouble(row->Cells["Budget"]->Value);
-				totalSavings += savingsValue;
+				totalSavings += savingsValue; //So, here's where we actually add them. So its like this. Assuming that I have savingsValue of 20, it will then be the new value of totalSavings. So we have += to add the value on its right to the variable or property on its left.
 				totalSpent += spentValue;
 				totalBudget += budgetValue;
 			}
 
-			tSavings->Text = totalSavings.ToString();
+			tSavings->Text = totalSavings.ToString(); //This converts its Double value into its String representation.
 			ttSpent->Text = totalSpent.ToString();
 			ttBudget->Text = (totalBudget + System::Convert::ToDouble(dHustle->Text)).ToString();
 
@@ -539,9 +539,6 @@ namespace myFinals {
 		}
 	}
 private: System::Void Reset_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ ddDays = dDays->Text;
-
-	int days = System::Convert::ToInt32(ddDays);
 	dataGridView1->Rows->Clear();
 
 	dDays->Text = "0";
