@@ -67,7 +67,7 @@ namespace myFinals {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -493,14 +493,42 @@ namespace myFinals {
 			double dHustleValue = System::Convert::ToDouble(ddHustle);
 			double days = System::Convert::ToDouble(ddDays);
 			double sHustleV = 0;
-			double totalSavings = 0, apple = 0;
+			double totalSavings = 0;
+			double x =  tBudgetV - tSpentV;
 			double totalSpent = 0;
 			double totalBudget = 0;
 
-			if (tSpentV > tBudgetV) { //Checks if TextBox(tSpentV) is greater than TextBox(tBudgetV)
+			
+			//if (tSpentV > tBudgetV) { //Checks if TextBox(tSpentV) is greater than TextBox(tBudgetV)
+				//MessageBox::Show("Expense exceeds budget!", "Error");
+			//}
+			//else {
+				//++days; //Will start incrementing by 1
+				//dataGridView1->Rows->Add(days, tBudgetV, tSpentV, tBudgetV - tSpentV);
+				//dDays->Text = days.ToString();
+				/*
+				Could also use this to start from 0
+				dDays->Text = (++days).ToString();
+				*/
+			//}
+			
+
+			if (tSpentV > tBudgetV) {
+				double updatedSideHustle = dHustleValue - (tSpentV - tBudgetV);
 				MessageBox::Show("Expense exceeds budget!", "Error");
-			}
-			else {
+				// Update the Side Hustle value only if spent amount exceeds budget
+				if (updatedSideHustle >= 0) {
+					dHustleValue = updatedSideHustle;
+					// Update the Side Hustle TextBox with the updated value
+					dHustle->Text = dHustleValue.ToString();
+					++days; //Will start incrementing by 1
+					dataGridView1->Rows->Add(days, tBudgetV, tSpentV, 0);
+					dDays->Text = days.ToString();
+				}
+				else {
+					MessageBox::Show("Expense exceeds Side Hustle!", "Error");
+				}
+			}else {
 				++days; //Will start incrementing by 1
 				dataGridView1->Rows->Add(days, tBudgetV, tSpentV, tBudgetV - tSpentV);
 				dDays->Text = days.ToString();
@@ -509,11 +537,13 @@ namespace myFinals {
 				dDays->Text = (++days).ToString();
 				*/
 			}
+
+
 			if (!String::IsNullOrEmpty(sideInput)) { //This part is just for the Side Hustle
 				sHustleV = System::Convert::ToDouble(sideInput); //Converts String to Double, could be placed outside.
 				dHustle->Text = (dHustleValue + sHustleV).ToString(); //Adds the sHustleV(The one in the input) and the current one dHustleValue(Which is also dHustle->Text).
 			}
-			for (int i=0;i<dataGridView1->Rows->Count;i++) {
+			for (int i = 0; i < dataGridView1->Rows->Count; i++) {
 				//So here... We use for loop to add row all of the column in the rows.
 				DataGridViewRow^ row = dataGridView1->Rows[i]; //Just like array, it starts from 0.
 				double savingsValue = System::Convert::ToDouble(row->Cells["Savings"]->Value); //Assuming that I have a value of 20 at our first row(0), then the next one is 10 which is row(1). So it would add/sum 20 and 10. But in this line of code, we'll just get the value of "i".
@@ -538,23 +568,23 @@ namespace myFinals {
 			MessageBox::Show("Please enter valid integer values.", "Error");
 		}
 	}
-private: System::Void Reset_Click(System::Object^ sender, System::EventArgs^ e) {
-	dataGridView1->Rows->Clear();
+	private: System::Void Reset_Click(System::Object^ sender, System::EventArgs^ e) {
+		dataGridView1->Rows->Clear();
 
-	dDays->Text = "0";
-	tSavings->Text = "0";
-	ttSpent->Text = "0";
-	ttBudget->Text = "0";
-	dHustle->Text = "0";
-	tBudget->Text = "";
-	tSpent->Text = "";
-	sHustle->Text = "";
-}
-
-private: 
-	System::Void Back_Click(System::Object^ sender, System::EventArgs^ e) {
-		MessageBox::Show("Expense Manager\n\nWelcome to Expense Manager! This application is designed to help you keep track of your expenses and manage your finances. You can easily record your expenses, categorize them, view reports, and set budgets to stay on top of your financial goals.\n\nStart organizing your expenses today with Expense Manager!", "Information", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		dDays->Text = "0";
+		tSavings->Text = "0";
+		ttSpent->Text = "0";
+		ttBudget->Text = "0";
+		dHustle->Text = "0";
+		tBudget->Text = "";
+		tSpent->Text = "";
+		sHustle->Text = "";
 	}
 
-};
+	private:
+		System::Void Back_Click(System::Object^ sender, System::EventArgs^ e) {
+			MessageBox::Show("Expense Manager\n\nWelcome to Expense Manager! This application is designed to help you keep track of your expenses and manage your finances. You can easily record your expenses, categorize them, view reports, and set budgets to stay on top of your financial goals.\n\nStart organizing your expenses today with Expense Manager!", "Information", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+
+	};
 }
