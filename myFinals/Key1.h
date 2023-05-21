@@ -494,9 +494,9 @@ namespace myFinals {
 			double days = System::Convert::ToDouble(ddDays);
 			double sHustleV = 0;
 			double totalSavings = 0;
-			double x =  tBudgetV - tSpentV;
 			double totalSpent = 0;
 			double totalBudget = 0;
+			double updatedSideHustle = dHustleValue - (tSpentV - tBudgetV);
 
 			
 			//if (tSpentV > tBudgetV) { //Checks if TextBox(tSpentV) is greater than TextBox(tBudgetV)
@@ -514,7 +514,6 @@ namespace myFinals {
 			
 
 			if (tSpentV > tBudgetV) {
-				double updatedSideHustle = dHustleValue - (tSpentV - tBudgetV);
 				MessageBox::Show("Expense exceeds budget!", "Error");
 				// Update the Side Hustle value only if spent amount exceeds budget
 				if (updatedSideHustle >= 0) {
@@ -528,7 +527,7 @@ namespace myFinals {
 				else {
 					MessageBox::Show("Expense exceeds Side Hustle!", "Error");
 				}
-			}else {
+			}else { //Data Grid View
 				++days; //Will start incrementing by 1
 				dataGridView1->Rows->Add(days, tBudgetV, tSpentV, tBudgetV - tSpentV);
 				dDays->Text = days.ToString();
@@ -543,7 +542,7 @@ namespace myFinals {
 				sHustleV = System::Convert::ToDouble(sideInput); //Converts String to Double, could be placed outside.
 				dHustle->Text = (dHustleValue + sHustleV).ToString(); //Adds the sHustleV(The one in the input) and the current one dHustleValue(Which is also dHustle->Text).
 			}
-			for (int i = 0; i < dataGridView1->Rows->Count; i++) {
+			for (int i = 0; i < dataGridView1->Rows->Count; i++) { //Update
 				//So here... We use for loop to add row all of the column in the rows.
 				DataGridViewRow^ row = dataGridView1->Rows[i]; //Just like array, it starts from 0.
 				double savingsValue = System::Convert::ToDouble(row->Cells["Savings"]->Value); //Assuming that I have a value of 20 at our first row(0), then the next one is 10 which is row(1). So it would add/sum 20 and 10. But in this line of code, we'll just get the value of "i".
@@ -569,8 +568,9 @@ namespace myFinals {
 		}
 	}
 	private: System::Void Reset_Click(System::Object^ sender, System::EventArgs^ e) {
-		dataGridView1->Rows->Clear();
+		dataGridView1->Rows->Clear(); //Reset the Data Grid
 
+		//Reset the labels. (...)
 		dDays->Text = "0";
 		tSavings->Text = "0";
 		ttSpent->Text = "0";
